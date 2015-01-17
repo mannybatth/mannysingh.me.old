@@ -13,7 +13,8 @@ body {
 }
 
 body {
-    font-family: "Source Sans Pro","Helvetica Neue",Helvetica,Arial,sans-serif;
+    /*font-family: "Source Sans Pro","Helvetica Neue",Helvetica,Arial,sans-serif;*/
+    font-family: 'Open Sans',"Helvetica Neue",Helvetica,Arial, sans-serif;
 }
 
 .text-vertical-center {
@@ -183,9 +184,9 @@ hr.small {
 .callout {
     display: table;
     width: 100%;
-    height: 400px;
+    height: 2px;
     color: #fff;
-    background: url(../img/callout.jpg) no-repeat center center scroll;
+    background-color: #eee;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
@@ -196,6 +197,7 @@ hr.small {
 
 .portfolio {
     padding: 50px 0;
+    background-color: #f1f4f5;
 }
 
 .portfolio-item {
@@ -213,7 +215,15 @@ hr.small {
 /* Call to Action */
 
 .call-to-action {
-    padding: 50px 0;
+    display: table;
+    width: 100%;
+    height: 2px;
+    color: #fff;
+    background-color: #eee;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
 }
 
 .call-to-action .btn {

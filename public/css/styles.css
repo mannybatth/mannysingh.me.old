@@ -28,12 +28,12 @@ i.icon-logo:before {
 	content: "\e600";
 }
 
-.title_header {
+.title-header {
     position:absolute;
     padding-left:20px;
 }
 
-.title_header h1 {
+.title-header h1 {
     font-family: "Helvetica Neue",Helvetica,sans-serif;
     font-weight: 600;
     font-size: 22px;
@@ -43,7 +43,42 @@ i.icon-logo:before {
     color: rgba(255,255,255,0.45);
 }
 
-.title_header h3 {
+.title-header h3 {
+    font-family: Georgia,"Lucida Sans",serif;
+    font-style: italic;
+    font-size: 13px;
+    font-weight: 200;
+    margin-top: 6px;
+    color: rgba(0,0,0,0.80);
+}
+
+.avatar-img {
+    display: inline-block;
+    width: 126px;
+    height: 126px;
+    overflow: hidden;
+    background-color: #fff;
+    border: 3px solid #fff;
+    position: relative;
+    border-radius: 100%;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.3);
+    margin-bottom: 20px;
+}
+
+.avatar-img img {
+    width: 120px;
+    height: 120px;
+    border-radius: 100%;
+}
+
+.about-me-title {
+    font-weight: 600;
+    font-size: 35px;
+    letter-spacing: 0;
+    margin:0px;
+}
+
+.about-me-subtitle {
     font-family: Georgia,"Lucida Sans",serif;
     font-style: italic;
     font-size: 13px;
