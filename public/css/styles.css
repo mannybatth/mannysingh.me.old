@@ -1,0 +1,53 @@
+@font-face {
+	font-family: 'manny';
+	src:url('../fonts/manny.eot?1wl8bu');
+	src:url('../fonts/manny.eot?#iefix1wl8bu') format('embedded-opentype'),
+		url('../fonts/manny.woff?1wl8bu') format('woff'),
+		url('../fonts/manny.ttf?1wl8bu') format('truetype'),
+		url('../fonts/manny.svg?1wl8bu#manny') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+i.icon-logo:before {
+    font-family: 'manny';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+    font-size: 140px;
+    color: white;
+    opacity: 0.5;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+
+	content: "\e600";
+}
+
+.title_header {
+    position:absolute;
+    padding-left:20px;
+}
+
+.title_header h1 {
+    font-family: "Helvetica Neue",Helvetica,sans-serif;
+    font-weight: 600;
+    font-size: 22px;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    margin-bottom:0px;
+    color: rgba(255,255,255,0.45);
+}
+
+.title_header h3 {
+    font-family: Georgia,"Lucida Sans",serif;
+    font-style: italic;
+    font-size: 13px;
+    font-weight: 200;
+    margin-top: 6px;
+    color: rgba(0,0,0,0.80);
+}
