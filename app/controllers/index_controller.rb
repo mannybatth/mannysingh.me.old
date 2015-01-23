@@ -18,7 +18,7 @@ class IndexController < BaseController
             '/css/styles.css'
             ]
 
-        js_compression :uglify
+        js_compression :jsmin
         css_compression :sass
         prebuild true
     end
