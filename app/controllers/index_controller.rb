@@ -55,6 +55,7 @@ class OmniAuth::Strategies::Identity
     def other_phase
         if on_registration_path? && request.get?
             status 404
+            "<h1>Not Found</h1>"
         else
             original_other_phase
         end
