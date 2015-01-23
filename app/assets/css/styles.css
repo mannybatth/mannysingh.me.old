@@ -1,10 +1,10 @@
 @font-face {
 	font-family: 'manny';
-	src:url('../fonts/manny.eot?1wl8bu');
-	src:url('../fonts/manny.eot?#iefix1wl8bu') format('embedded-opentype'),
-		url('../fonts/manny.woff?1wl8bu') format('woff'),
-		url('../fonts/manny.ttf?1wl8bu') format('truetype'),
-		url('../fonts/manny.svg?1wl8bu#manny') format('svg');
+	src:url('/fonts/manny.eot?1wl8bu');
+	src:url('/fonts/manny.eot?#iefix1wl8bu') format('embedded-opentype'),
+		url('/fonts/manny.woff?1wl8bu') format('woff'),
+		url('/fonts/manny.ttf?1wl8bu') format('truetype'),
+		url('/fonts/manny.svg?1wl8bu#manny') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
