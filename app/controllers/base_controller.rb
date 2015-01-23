@@ -11,6 +11,17 @@ class BaseController < Sinatra::Base
     enable :sessions
     use Rack::Flash
 
+    class OmniAuth::Strategies::Identity
+        alias :original_other_phase :other_phase
+        def other_phase
+            if on_registration_path? && request.get?
+                redirect '/auth/identity'
+            else
+                original_other_phase
+            end
+        end
+    end
+
     use OmniAuth::Builder do
         provider :identity, :fields => [:email]
     end

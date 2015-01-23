@@ -49,15 +49,3 @@ class IndexController < BaseController
     end
 
 end
-
-class OmniAuth::Strategies::Identity
-    alias :original_other_phase :other_phase
-    def other_phase
-        if on_registration_path? && request.get?
-            status 404
-            "<h1>Not Found</h1>"
-        else
-            original_other_phase
-        end
-    end
-end
