@@ -1,4 +1,4 @@
-class AdminController < ApplicationController
+class AdminController < BaseController
 
     get '/admin' do
         erb :admin

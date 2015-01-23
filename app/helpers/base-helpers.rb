@@ -1,4 +1,4 @@
-module ApplicationHelpers
+module BaseHelpers
 
     def protected!
         if !session[:uid]

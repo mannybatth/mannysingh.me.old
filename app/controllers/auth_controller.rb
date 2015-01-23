@@ -1,4 +1,4 @@
-class AuthController < ApplicationController
+class AuthController < BaseController
 
     post '/auth/:name/callback' do
         auth = request.env['omniauth.auth']

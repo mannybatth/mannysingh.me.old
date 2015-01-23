@@ -4,9 +4,9 @@ require 'digest/sha1'
 require 'rack-flash'
 Bundler.require(:default)
 
-class ApplicationController < Sinatra::Base
+class BaseController < Sinatra::Base
 
-    helpers ApplicationHelpers
+    helpers BaseHelpers
 
     enable :sessions
     use Rack::Flash
@@ -28,13 +28,13 @@ class ApplicationController < Sinatra::Base
 
     register Sinatra::AssetPack
     assets do
-        serve '/js', :from => 'app/assets/js'
+        serve '/js', :from => '../../assets/js'
         js :application, [
             '/js/jquery.js',
             '/js/bootstrap.min.js'
             ]
 
-        serve '/css', :from => 'app/assets/css'
+        serve '/css', :from => '../../assets/css'
         css :application, [
             '/css/bootstrap.min.css',
             '/css/stylish-portfolio.css',
@@ -42,13 +42,13 @@ class ApplicationController < Sinatra::Base
             '/css/styles.css'
             ]
 
-        serve '/img', :from => 'app/assets/img'
-        serve '/fonts', :from => 'app/assets/fonts'
+        serve '/img', :from => '../../assets/img'
+        serve '/fonts', :from => '../../assets/fonts'
         js_compression :jsmin
         css_compression :sass
     end
 
-    set :views, Proc.new { File.join(root, "app/views") }
+    set :views, Proc.new { File.join(root, "../../views") }
 
     before do
         protected! if request.path_info.start_with?("/admin")

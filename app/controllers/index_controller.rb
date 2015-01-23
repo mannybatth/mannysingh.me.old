@@ -1,4 +1,4 @@
-class IndexController < ApplicationController
+class IndexController < BaseController
 
     get '/' do
         redirect to("/index.html")
