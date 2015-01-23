@@ -7,9 +7,9 @@ require './app/controllers/admin_controller.rb'
 require './app/controllers/index_controller.rb'
 
 #config mongo connectivity
-if ENV['MONGOHQ_URL']
-    uri = URI.parse(ENV['MONGOHQ_URL'])
-    MongoMapper.connection = Mongo::Connection.from_uri(ENV['MONGOHQ_URL'])
+if ENV['MONGOLAB_URI']
+    uri = URI.parse(ENV['MONGOLAB_URI'])
+    MongoMapper.connection = Mongo::Connection.from_uri(ENV['MONGOLAB_URI'])
     MongoMapper.database = uri.path.gsub(/^\//, '')
 else
     MongoMapper.connection = Mongo::Connection.new('localhost', nil)
