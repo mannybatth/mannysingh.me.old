@@ -1,24 +1,27 @@
 class AdminController < BaseController
 
-    get '/admin' do
+    helpers BaseHelpers
+
+    get '/' do
+        protected!
         erb :admin
     end
 
     #Post management
 
-    get '/admin/create' do
+    get '/create' do
         @post = Post.new
 
         erb :create
     end
 
-    get '/admin/edit/:ref' do
+    get '/edit/:ref' do
         @post = Post.where(:ref => params[:ref]).first
 
         erb :create
     end
 
-    post '/admin/submit' do
+    post '/submit' do
         ref = params[:ref].strip
         title = params[:title].strip_tags
         content = params[:content]
@@ -38,24 +41,24 @@ class AdminController < BaseController
 
         target_post.save
 
-        redirect to('/')
+        redirect '/'
     end
 
     #User management
 
-    get '/admin/add_user' do
+    get '/add_user' do
         @user = User.new
 
         erb :user
     end
 
-    get '/admin/edit_user/:user_name' do
+    get '/edit_user/:user_name' do
         @user = User.where(:user_name => params[:user_name]).first
 
         erb :user
     end
 
-    post '/admin/submit_user' do
+    post '/submit_user' do
         prev_user_name = params[:prev_user_name].strip
         user_name = params[:user_name].strip_tags
         display_name = params[:display_name].strip_tags
@@ -76,16 +79,16 @@ class AdminController < BaseController
 
         target_user.save
 
-        redirect to('/admin')
+        redirect '/admin'
     end
 
-    get '/admin/delete_user/:user_name' do
+    get '/delete_user/:user_name' do
         if User.count > 1
             @target = User.where(:user_name => params[:user_name]).first
             @target.delete if @target != nil
         end
 
-        redirect to('/admin')
+        redirect '/admin'
     end
 
 end

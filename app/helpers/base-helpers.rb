@@ -2,7 +2,7 @@ module BaseHelpers
 
     def protected!
         if !session[:uid]
-            redirect to('/auth/identity')
+            redirect '/auth/identity'
         end
     end
 

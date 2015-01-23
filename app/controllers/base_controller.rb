@@ -7,9 +7,10 @@ Bundler.require(:default)
 class BaseController < Sinatra::Base
 
     helpers BaseHelpers
-
+    register Sinatra::AssetPack
     enable :sessions
     use Rack::Flash
+
     use OmniAuth::Builder do
         provider :identity, :fields => [:email]
     end
@@ -26,32 +27,6 @@ class BaseController < Sinatra::Base
         [302, {'Location' => endpoint, 'Content-Type'=> 'text/html'}, []]
     end
 
-    register Sinatra::AssetPack
-    assets do
-        serve '/js', :from => '../../assets/js'
-        js :application, [
-            '/js/jquery.js',
-            '/js/bootstrap.min.js'
-            ]
-
-        serve '/css', :from => '../../assets/css'
-        css :application, [
-            '/css/bootstrap.min.css',
-            '/css/stylish-portfolio.css',
-            '/css/font-awesome/css/font-awesome.min.css',
-            '/css/styles.css'
-            ]
-
-        serve '/img', :from => '../../assets/img'
-        serve '/fonts', :from => '../../assets/fonts'
-        js_compression :jsmin
-        css_compression :sass
-    end
-
-    set :views, Proc.new { File.join(root, "../../views") }
-
-    before do
-        protected! if request.path_info.start_with?("/admin")
-    end
+    set :views, Proc.new { File.join(root, "../views") }
 
 end

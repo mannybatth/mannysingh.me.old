@@ -1,9 +1,10 @@
 require 'sinatra/base'
 
 Dir.glob(File.dirname(__FILE__) + '/app/{helpers}/*.rb').each { |file| require file }
-require './app/controllers/base/base_controller.rb'
+require './app/controllers/base_controller.rb'
 Dir.glob(File.dirname(__FILE__) + '/app/{models}/*.rb').each { |file| require file }
-Dir.glob(File.dirname(__FILE__) + '/app/{controllers}/*.rb').each { |file| require file }
+require './app/controllers/admin_controller.rb'
+require './app/controllers/index_controller.rb'
 
 #config mongo connectivity
 if ENV['MONGOHQ_URL']
@@ -16,5 +17,4 @@ else
 end
 
 map('/admin') { run AdminController }
-map('/auth') { run AuthController }
 map('/') { run IndexController }
