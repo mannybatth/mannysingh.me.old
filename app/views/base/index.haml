@@ -1,0 +1,71 @@
+/ Header
+%header#top.header
+  .title-header
+    %h1 Manpreet Singh
+    %h3 Full Stack Junior Developer
+  .text-vertical-center
+    %i.icon-logo
+    %br/
+    %br/
+    %br/
+    %br/
+    %a.btn.btn-dark.btn-lg{:href => "#about"} About
+    %a.btn.btn-dark.btn-lg{:href => "#projects"} Projects
+    %a.btn.btn-dark.btn-lg{:href => "#contact"} Contact
+
+/ About
+%section#about.about
+  .container
+    .row
+      .col-lg-12
+        .text-center
+          %span.avatar-img
+            %img{:src => "/images/avatar.jpg"}/
+          %h1.about-me-title Manpreet Singh
+          %h3.about-me-subtitle -- Full Stack Junior Developer --
+        %br/
+        .col-md-6
+          %p.lead{:style => "font-size:16px;"}
+            For 8 years I've designed, developed, and marketed websites and apps for startups in San Francisco, California and Tampa Bay, Florida.
+            %br/
+            %br/
+            The key to designing a great experience is empathy. I place myself in the users' shoes to genuinely consider what the user wants from the product.
+        .col-md-6
+          %p.lead{:style => "font-size:16px;"}
+            I live and design by the mantra "Don't make me think." I craft my designs to help the user quickly understand where they are and what they can do on each interface.
+            %br/
+            %br/
+            The best user interface is one that you don't notice. To accomplish that, I use minimal and recognizable design patterns.
+        /
+          <h2>Stylish Portfolio is the perfect theme for your next project!</h2>
+          <p class="lead">This theme features some wonderful photography courtesy of <a target="_blank" href="http://join.deathtothestockphoto.com/">Death to the Stock Photo</a>.</p>
+
+/ Portfolio
+%section#projects.portfolio
+  .container
+    .row
+      .col-lg-10.col-lg-offset-1.text-center
+        %h2 Projects
+        %hr.small/
+        .row
+          .col-md-6
+            .portfolio-item
+              %a{:href => "#"}
+                %img.img-portfolio.img-responsive{:src => "/images/portfolio-1.jpg"}/
+          .col-md-6
+            .portfolio-item
+              %a{:href => "#"}
+                %img.img-portfolio.img-responsive{:src => "/images/portfolio-2.jpg"}/
+          .col-md-6
+            .portfolio-item
+              %a{:href => "#"}
+                %img.img-portfolio.img-responsive{:src => "/images/portfolio-3.jpg"}/
+          .col-md-6
+            .portfolio-item
+              %a{:href => "#"}
+                %img.img-portfolio.img-responsive{:src => "/images/portfolio-4.jpg"}/
+        / /.row (nested)
+        %a.btn.btn-dark{:href => "#"} View More Items
+      / /.col-lg-10
+    / /.row
+  / /.container

@@ -1,0 +1,4 @@
+.project
+    .title= link_to project.title, url_for(:projects, :show, :id => project)
+    .date= time_ago_in_words(project.created_at || Time.now) + ' ago'
+    .body= simple_format(project.body)
