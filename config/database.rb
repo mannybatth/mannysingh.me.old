@@ -1,7 +1,16 @@
-MongoMapper.connection = Mongo::Connection.new('localhost', nil, :logger => logger)
+if ENV['MONGOLAB_URI']
 
-case Padrino.env
-  when :development then MongoMapper.database = 'mannysingh_me_development'
-  when :production  then MongoMapper.database = 'mannysingh_me_production'
-  when :test        then MongoMapper.database = 'mannysingh_me_test'
+    uri = URI.parse(ENV['MONGOLAB_URI'])
+    MongoMapper.connection = Mongo::Connection.from_uri(ENV['MONGOLAB_URI'], nil, :logger => logger)
+    MongoMapper.database = uri.path.gsub(/^\//, '')
+
+else
+
+    MongoMapper.connection = Mongo::Connection.new('localhost', nil, :logger => logger)
+    case Padrino.env
+        when :development then MongoMapper.database = 'mannysingh_me_development'
+        when :production  then MongoMapper.database = 'mannysingh_me_production'
+        when :test        then MongoMapper.database = 'mannysingh_me_test'
+    end
+
 end
