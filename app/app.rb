@@ -1,4 +1,4 @@
-module SampleBlog
+module MannySinghMe
     class App < Padrino::Application
         register SassInitializer
         register Padrino::Mailer

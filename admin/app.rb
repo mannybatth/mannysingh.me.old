@@ -1,4 +1,4 @@
-module SampleBlog
+module MannySinghMe
   class Admin < Padrino::Application
     register Padrino::Mailer
     register Padrino::Helpers

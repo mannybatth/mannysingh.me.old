@@ -1,4 +1,4 @@
-SampleBlog::Admin.controllers :languages do
+MannySinghMe::Admin.controllers :languages do
   get :index do
     @title = "Languages"
     @languages = Language.all

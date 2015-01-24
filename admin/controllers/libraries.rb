@@ -1,4 +1,4 @@
-SampleBlog::Admin.controllers :libraries do
+MannySinghMe::Admin.controllers :libraries do
   get :index do
     @title = "Libraries"
     @libraries = Library.all

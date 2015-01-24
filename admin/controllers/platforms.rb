@@ -1,4 +1,4 @@
-SampleBlog::Admin.controllers :platforms do
+MannySinghMe::Admin.controllers :platforms do
   get :index do
     @title = "Platforms"
     @platforms = Platform.all

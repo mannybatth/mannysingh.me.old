@@ -1,4 +1,4 @@
-SampleBlog::App.controllers :base do
+MannySinghMe::App.controllers :base do
 
   get :index, :map => "/" do
     render "base/index"

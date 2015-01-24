@@ -1,6 +1,6 @@
 # Helper methods defined here can be accessed in any controller or view in the application
 
-module SampleBlog
+module MannySinghMe
   class App
     module ProjectsHelper
       # def simple_helper_method

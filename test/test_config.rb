@@ -10,9 +10,9 @@ class Test::Unit::TestCase
   # You can use this method to custom specify a Rack app
   # you want rack-test to invoke:
   #
-  #   app SampleBlog::App
-  #   app SampleBlog::App.tap { |a| }
-  #   app(SampleBlog::App) do
+  #   app MannySinghMe::App
+  #   app MannySinghMe::App.tap { |a| }
+  #   app(MannySinghMe::App) do
   #     set :foo, :bar
   #   end
   #

@@ -1,4 +1,4 @@
-SampleBlog::Admin.controllers :projects do
+MannySinghMe::Admin.controllers :projects do
   get :index do
     @title = "Projects"
     @projects = Project.all
