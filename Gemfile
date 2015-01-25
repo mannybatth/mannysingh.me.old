@@ -26,10 +26,10 @@ gem 'shoulda', :group => 'test'
 gem 'rack-test', :require => 'rack/test', :group => 'test'
 
 # Padrino Stable Gem
-# gem 'padrino', '0.12.4'
+gem 'padrino', '0.12.4'
 
 # Or Padrino Edge
-gem 'padrino', :github => 'padrino/padrino-framework'
+#gem 'padrino', :github => 'padrino/padrino-framework'
 
 # Or Individual Gems
 # %w(core support gen helpers cache mailer admin).each do |g|
