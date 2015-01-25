@@ -1,7 +1,14 @@
 - @title = @project.title
-#show
-  .project
-    .title= @project.title
-    .date= time_ago_in_words(@project.created_at || Time.now) + ' ago'
-    .body= simple_format(@project.body.to_s.html_safe)
-%p= link_to 'View all projects', url_for(:projects, :index)
+
+%section#projects.portfolio
+    .container
+        .row
+            .col-lg-10.col-lg-offset-1
+                .project.portfolio-item
+                    .title= @project.title
+                    .body= simple_format(@project.body.to_s.html_safe)
+                    %ul.grid
+                        - @project.screenshots.each do |s|
+                            %li.portfolio-item
+                                %img.img-portfolio.img-responsive{:alt => @project.title, :src => "/images/screenshots/"+s}/
+          

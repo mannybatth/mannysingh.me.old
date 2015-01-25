@@ -19,10 +19,10 @@ MannySinghMe::App.controllers :projects do
     #   'Hello world!'
     # end
 
-    get :index do
-        @projects = Project.all(:order => 'created_at desc')
-        render 'projects/index'
-    end
+    # get :index do
+    #     @projects = Project.all(:order => 'created_at desc')
+    #     render 'projects/index'
+    # end
 
     get :show, :with => :id do
         @project = Project.find_by_id(params[:id])

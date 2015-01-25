@@ -26,19 +26,16 @@
         %br/
         .col-md-6
           %p.lead{:style => "font-size:16px;"}
-            For 8 years I've designed, developed, and marketed websites and apps for startups in San Francisco, California and Tampa Bay, Florida.
+            Passionate web & mobile developer from the Indianapolis area. I have been mainly focused on developing native iOS and Android apps the last 4 years. I also have an interest in UI/UX design. 
             %br/
             %br/
-            The key to designing a great experience is empathy. I place myself in the users' shoes to genuinely consider what the user wants from the product.
+            You can't have a good application without a good design. It is common practice nowadays to use your smartphone to look up everything, consequently it's important to have a mobile-friendly design. 
         .col-md-6
           %p.lead{:style => "font-size:16px;"}
-            I live and design by the mantra "Don't make me think." I craft my designs to help the user quickly understand where they are and what they can do on each interface.
+            I'm also a hackathon enthusiast. I love to attend hackathons with friends and complete with other programmers. 
             %br/
             %br/
-            The best user interface is one that you don't notice. To accomplish that, I use minimal and recognizable design patterns.
-        /
-          <h2>Stylish Portfolio is the perfect theme for your next project!</h2>
-          <p class="lead">This theme features some wonderful photography courtesy of <a target="_blank" href="http://join.deathtothestockphoto.com/">Death to the Stock Photo</a>.</p>
+            When I'm not busy staring at my box with LED lights, I love to watch football & play volleyball with family and friends. Huge Colts fan. Never missed a Colts game for as long as I've been watching football. Also a Peyton Manning fan, even though he did leave us. :'(
 
 / Portfolio
 %section#projects.portfolio
@@ -47,25 +44,6 @@
       .col-lg-10.col-lg-offset-1.text-center
         %h2 Projects
         %hr.small/
-        .row
-          .col-md-6
-            .portfolio-item
-              %a{:href => "#"}
-                %img.img-portfolio.img-responsive{:src => "/images/portfolio-1.jpg"}/
-          .col-md-6
-            .portfolio-item
-              %a{:href => "#"}
-                %img.img-portfolio.img-responsive{:src => "/images/portfolio-2.jpg"}/
-          .col-md-6
-            .portfolio-item
-              %a{:href => "#"}
-                %img.img-portfolio.img-responsive{:src => "/images/portfolio-3.jpg"}/
-          .col-md-6
-            .portfolio-item
-              %a{:href => "#"}
-                %img.img-portfolio.img-responsive{:src => "/images/portfolio-4.jpg"}/
-        / /.row (nested)
-        %a.btn.btn-dark{:href => "#"} View More Items
-      / /.col-lg-10
-    / /.row
-  / /.container
+        %ul.row.grid.cs-style-7
+          #projects= partial 'projects/project', :collection => @projects
+

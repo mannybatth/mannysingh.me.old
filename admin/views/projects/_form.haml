@@ -16,7 +16,7 @@
 %fieldset.control-group{:class => error ? 'has-error' : ''}
   =f.label :screenshots, :class => 'control-label'
   .controls
-    =f.text_field :screenshots, :class => 'form-control input-large input-with-feedback'
+    =f.text_field :screenshots, :class => 'form-control input-large input-with-feedback tags_input', :value => @project.screenshots.join(",")
     %span.help-inline=error ? f.error_message_on(:screenshots, :class => 'text-error') : ''
 
 - error = @project.errors.include?(:language_ids)

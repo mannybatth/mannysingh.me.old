@@ -4,7 +4,7 @@ class Project
     # key <name>, <type>
     key :title, String, :required => true
     key :body, String
-    key :screenshots, String
+    key :screenshots, Array
     key :language_ids, Array
     key :library_ids, Array
     key :platform_ids, Array

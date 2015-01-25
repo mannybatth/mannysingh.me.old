@@ -1,4 +1,9 @@
-.project
-    .title= link_to project.title, url_for(:projects, :show, :id => project)
-    .date= time_ago_in_words(project.created_at || Time.now) + ' ago'
-    .body= simple_format(project.body)
+.col-md-6
+    %li.portfolio-item
+        %figure
+            %img.img-portfolio.img-responsive{:alt => project.title, :src => "/images/screenshots/"+project.screenshots.first}/
+            %figcaption
+                %a{:href => "/projects/show/"+project.id}
+                    %h3= project.title
+                / %span caption here
+                =link_to "Project details", url_for(:projects, :show, :id => project), :class => "link_to_btn"

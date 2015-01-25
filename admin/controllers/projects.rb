@@ -16,6 +16,7 @@ MannySinghMe::Admin.controllers :projects do
 
   post :create do
     @project = Project.new(params[:project])
+    @project.screenshots = @project.screenshots.split(/[\s,]+/)
     if @project.save
       @title = pat(:create_title, :model => "project #{@project.id}")
       flash[:success] = pat(:create_success, :model => 'Project')
@@ -45,6 +46,7 @@ MannySinghMe::Admin.controllers :projects do
     @title = pat(:update_title, :model => "project #{params[:id]}")
     @project = Project.find(params[:id])
     if @project
+      params[:project]['screenshots'] = params[:project]['screenshots'].to_s.split(/[\s,]+/)
       if @project.update_attributes(params[:project])
         flash[:success] = pat(:update_success, :model => 'Project', :id =>  "#{params[:id]}")
         params[:save_and_continue] ?

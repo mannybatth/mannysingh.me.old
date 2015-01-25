@@ -86,3 +86,7 @@ i.icon-logo:before {
     margin-top: 6px;
     color: rgba(0,0,0,0.80);
 }
+
+.project .title {
+    font-size: 30px;
+}
