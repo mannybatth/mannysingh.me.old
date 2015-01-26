@@ -3,7 +3,7 @@ if ENV['MONGOLAB_URI']
     uri = URI.parse(ENV['MONGOLAB_URI'])
     MongoMapper.connection = Mongo::Connection.from_uri(ENV['MONGOLAB_URI'])
     MongoMapper.database = uri.path.gsub(/^\//, '')
-    MongoMapper.authenticate(uri.user, uri.password)
+    # MongoMapper.authenticate(uri.user, uri.password)
 
 else
 
