@@ -15,7 +15,6 @@ MannySinghMe::Admin.controllers :projects do
   end
 
   post :create do
-    puts params
     selected_languages = params[:project][:languages]
     selected_libraries = params[:project][:libraries]
     selected_platforms = params[:project][:platforms]
