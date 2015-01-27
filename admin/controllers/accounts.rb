@@ -26,7 +26,7 @@ MannySinghMe::Admin.controllers :accounts do
 
   get :edit, :with => :id do
     @title = pat(:edit_title, :model => "account #{params[:id]}")
-    @account = Account.find(params[:id])
+    @account = Account.get(params[:id])
     if @account
       render 'accounts/edit'
     else
@@ -37,9 +37,9 @@ MannySinghMe::Admin.controllers :accounts do
 
   put :update, :with => :id do
     @title = pat(:update_title, :model => "account #{params[:id]}")
-    @account = Account.find(params[:id])
+    @account = Account.get(params[:id])
     if @account
-      if @account.update_attributes(params[:account])
+      if @account.update(params[:account])
         flash[:success] = pat(:update_success, :model => 'Account', :id =>  "#{params[:id]}")
         params[:save_and_continue] ?
           redirect(url(:accounts, :index)) :
@@ -56,7 +56,7 @@ MannySinghMe::Admin.controllers :accounts do
 
   delete :destroy, :with => :id do
     @title = "Accounts"
-    account = Account.find(params[:id])
+    account = Account.get(params[:id])
     if account
       if account != current_account && account.destroy
         flash[:success] = pat(:delete_success, :model => 'Account', :id => "#{params[:id]}")
@@ -77,11 +77,11 @@ MannySinghMe::Admin.controllers :accounts do
       redirect(url(:accounts, :index))
     end
     ids = params[:account_ids].split(',').map(&:strip)
-    accounts = Account.find(ids)
+    accounts = Account.all(:id => ids)
     
     if accounts.include? current_account
       flash[:error] = pat(:delete_error, :model => 'account')
-    elsif accounts.each(&:destroy)
+    elsif accounts.destroy
     
       flash[:success] = pat(:destroy_many_success, :model => 'Accounts', :ids => "#{ids.to_sentence}")
     end

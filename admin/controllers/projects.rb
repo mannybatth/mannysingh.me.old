@@ -15,7 +15,16 @@ MannySinghMe::Admin.controllers :projects do
   end
 
   post :create do
+    selected_languages = params[:project][:selected_languages]
+    selected_libraries = params[:project][:selected_libraries]
+    selected_platforms = params[:project][:selected_platforms]
+    params[:project].delete('selected_languages')
+    params[:project].delete('selected_libraries')
+    params[:project].delete('selected_platforms')
     @project = Project.new(params[:project])
+    @project.languages = Language.all(:id => selected_languages)
+    @project.libraries = Library.all(:id => selected_libraries)
+    @project.platforms = Platform.all(:id => selected_platforms)
     if @project.save
       @title = pat(:create_title, :model => "project #{@project.id}")
       flash[:success] = pat(:create_success, :model => 'Project')
@@ -30,6 +39,18 @@ MannySinghMe::Admin.controllers :projects do
   get :edit, :with => :id do
     @title = pat(:edit_title, :model => "project #{params[:id]}")
     @project = Project.get(params[:id])
+    @selected_languages = []
+    @selected_libraries = []
+    @selected_platforms = []
+    @project.libraries.each do |library|
+      @selected_libraries << library.id
+    end
+    @project.languages.each do |language|
+      @selected_languages << language.id
+    end
+    @project.platforms.each do |platform|
+      @selected_platforms << platform.id
+    end
     @languages_list = Language.all
     @libraries_list = Library.all
     @platforms_list = Platform.all
@@ -45,7 +66,16 @@ MannySinghMe::Admin.controllers :projects do
     @title = pat(:update_title, :model => "project #{params[:id]}")
     @project = Project.get(params[:id])
     if @project
-      if @project.update(params[:project])
+      @project.languages = Language.all(:id => params[:project][:selected_languages])
+      @project.libraries = Library.all(:id => params[:project][:selected_libraries])
+      @project.platforms = Platform.all(:id => params[:project][:selected_platforms])
+      params[:project].delete('selected_languages')
+      params[:project].delete('selected_libraries')
+      params[:project].delete('selected_platforms')
+      params[:project].each do |key, value|
+        @project[key] = value
+      end
+      if @project.save
         flash[:success] = pat(:update_success, :model => 'Project', :id =>  "#{params[:id]}")
         params[:save_and_continue] ?
           redirect(url(:projects, :index)) :

@@ -19,23 +19,23 @@
 
 - error = @project.errors.include?(:languages)
 %fieldset.control-group{:class => error ? 'has-error' : ''}
-  =f.label :languages, :class => 'control-label'
+  =f.label :languages, :class => 'control-label', :value => @selected_languages
   .controls
-    =f.select :languages, :class => 'form-control input-large input-with-feedback', :collection => @languages_list, fields: [:name, :id], :multiple => true
+    =f.select :languages, :class => 'form-control input-large input-with-feedback', :collection => @languages_list, fields: [:name, :id], :multiple => true, :value => @selected_languages
     %span.help-inline=error ? f.error_message_on(:languages, :class => 'text-error') : ''
 
-- error = @project.errors.include?(:libraries)
+- error = @project.errors.include?(:selected_libraries)
 %fieldset.control-group{:class => error ? 'has-error' : ''}
-  =f.label :libraries, :class => 'control-label'
+  =f.label :selected_libraries, :class => 'control-label', :value => @selected_libraries
   .controls
-    =f.select :libraries, :class => 'form-control input-large input-with-feedback', :collection => @libraries_list, fields: [:name, :id], :multiple => true
-    %span.help-inline=error ? f.error_message_on(:libraries, :class => 'text-error') : ''
+    =f.select :selected_libraries, :class => 'form-control input-large input-with-feedback', :collection => @libraries_list, fields: [:name, :id], :multiple => true, :value => @selected_libraries
+    %span.help-inline=error ? f.error_message_on(:selected_libraries, :class => 'text-error') : ''
 
 - error = @project.errors.include?(:platforms)
 %fieldset.control-group{:class => error ? 'has-error' : ''}
-  =f.label :platforms, :class => 'control-label'
+  =f.label :platforms, :class => 'control-label', :value => @selected_platforms
   .controls
-    =f.select :platforms, :class => 'form-control input-large input-with-feedback', :collection => @platforms_list, fields: [:name, :id], :multiple => true
+    =f.select :platforms, :class => 'form-control input-large input-with-feedback', :collection => @platforms_list, fields: [:name, :id], :multiple => true, :value => @selected_platforms
     %span.help-inline=error ? f.error_message_on(:platforms, :class => 'text-error') : ''
 
 .form-actions

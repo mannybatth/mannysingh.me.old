@@ -7,6 +7,4 @@ class Library
   property :link, String
   property :created_at, DateTime
   property :updated_at, DateTime
-
-  belongs_to :project
 end
