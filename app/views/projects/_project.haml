@@ -1,7 +1,8 @@
 .col-md-6
     %li.portfolio-item
         %figure
-            %img.img-portfolio.img-responsive{:alt => project.title, :src => "/images/screenshots/"+project.screenshots.split(',').first}/
+            - if project.screenshots.nil?
+                %img.img-portfolio.img-responsive{:alt => project.title, :src => "/images/screenshots/"+project.screenshots.split(',').first}/
             %figcaption
                 %a{:href => "/projects/show/"+project.id.to_s}
                     %h3= project.title
