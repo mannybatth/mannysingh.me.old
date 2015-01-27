@@ -3,15 +3,15 @@ class Project
 
   # property <name>, <type>
   property :id, Serial
-  property :title, String
+  property :title, String, :required => true
   property :body, Text
   property :screenshots, String
   property :created_at, DateTime
   property :updated_at, DateTime
     
-  has n, :languages, :through => Resource, :constraint => :destroy
-  has n, :libraries, :through => Resource, :constraint => :destroy
-  has n, :platforms, :through => Resource, :constraint => :destroy
+  has n, :languages, :through => Resource, :constraint => :destroy!
+  has n, :libraries, :through => Resource, :constraint => :destroy!
+  has n, :platforms, :through => Resource, :constraint => :destroy!
 
 end
 

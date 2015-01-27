@@ -15,12 +15,13 @@ MannySinghMe::Admin.controllers :projects do
   end
 
   post :create do
-    selected_languages = params[:project][:selected_languages]
-    selected_libraries = params[:project][:selected_libraries]
-    selected_platforms = params[:project][:selected_platforms]
-    params[:project].delete('selected_languages')
-    params[:project].delete('selected_libraries')
-    params[:project].delete('selected_platforms')
+    puts params
+    selected_languages = params[:project][:languages]
+    selected_libraries = params[:project][:libraries]
+    selected_platforms = params[:project][:platforms]
+    params[:project].delete('languages')
+    params[:project].delete('libraries')
+    params[:project].delete('platforms')
     @project = Project.new(params[:project])
     @project.languages = Language.all(:id => selected_languages)
     @project.libraries = Library.all(:id => selected_libraries)

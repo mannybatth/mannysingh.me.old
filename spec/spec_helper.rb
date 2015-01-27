@@ -1,9 +1,12 @@
-RACK_ENV = 'test' unless defined?(RACK_ENV)
+
 require File.expand_path(File.dirname(__FILE__) + "/../config/boot")
+RACK_ENV = Padrino.env unless defined?(RACK_ENV)
 Dir[File.expand_path(File.dirname(__FILE__) + "/../app/helpers/**/*.rb")].each(&method(:require))
 
-RSpec.configure do |conf|
-  conf.include Rack::Test::Methods
+RSpec.configure do |config|
+  
+  config.before(:suite) { DataMapper.auto_migrate! }
+
 end
 
 # You can use this method to custom specify a Rack app
