@@ -10,11 +10,12 @@
   .controls
     ~f.text_area :body, :class => 'form-control input-large input-with-feedback'
     %span.help-inline=error ? f.error_message_on(:body, :class => 'text-error') : pat(:example)
+
 - error = @project.errors.key?(:screenshots) && @project.errors[:screenshots].count > 0
 %fieldset.control-group{:class => error ? 'has-error' : ''}
   =f.label :screenshots, :class => 'control-label'
   .controls
-    =f.text_field :screenshots, :class => 'form-control input-large input-with-feedback'
+    =f.text_field :screenshots, :class => 'form-control input-large input-with-feedback tags_input'
     %span.help-inline=error ? f.error_message_on(:screenshots, :class => 'text-error') : pat(:example)
 
 - error = @project.errors.include?(:selected_languages)
@@ -37,6 +38,8 @@
   .controls
     =f.select :selected_platforms, :class => 'form-control input-large input-with-feedback', :collection => @platforms_list, fields: [:name, :id], :multiple => true, :value => @selected_platforms
     %span.help-inline=error ? f.error_message_on(:selected_platforms, :class => 'text-error') : ''
+
+%br/
 
 .form-actions
   =f.submit pat(:save), :class => 'btn btn-primary'

@@ -25,7 +25,7 @@ MannySinghMe::App.controllers :projects do
     # end
 
     get :show, :with => :id do
-        @project = Project.find_by_id(params[:id])
+        @project = Project.get(params[:id])
         render 'projects/show'
     end
 

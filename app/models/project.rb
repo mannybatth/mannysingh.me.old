@@ -5,7 +5,7 @@ class Project
   property :id, Serial
   property :title, String, :required => true
   property :body, Text
-  property :screenshots, String
+  property :screenshots, Text
   property :created_at, DateTime
   property :updated_at, DateTime
     

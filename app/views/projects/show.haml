@@ -8,7 +8,7 @@
                     .title= @project.title
                     .body= simple_format(@project.body.to_s.html_safe)
                     %ul.grid
-                        - @project.screenshots.each do |s|
+                        - @project.screenshots.split(',').each do |s|
                             %li.portfolio-item
                                 %img.img-portfolio.img-responsive{:alt => @project.title, :src => "/images/screenshots/"+s}/
           
