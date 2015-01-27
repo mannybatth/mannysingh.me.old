@@ -26,6 +26,7 @@
                       =hidden_field_tag :platform_ids, :'data-delete-many-ids' => true
                       =submit_tag pat(:delete), :class =>'list-menu-popover-delete-selected-btn btn btn-danger btn-small'
                       .btn.btn-default.btn-small.cancel=pat(:cancel)
+        %th.header= mat(:platform, :id)
         %th.header= mat(:platform, :name)
         %th.header= mat(:platform, :link)
         %th.header= mat(:platform, :created_at)
@@ -37,10 +38,11 @@
         %tr.list-row
           %td.list-column.list-selectable
             =check_box_tag 'platform_ids[]', :value => platform.id, :class => 'list-selectable-checkbox'
+          %td.list-column=platform.id
           %td.list-column=platform.name
           %td.list-column=platform.link
-          %td.list-column=time_ago_in_words platform.created_at
-          %td.list-column=time_ago_in_words platform.updated_at
+          %td.list-column=platform.created_at
+          %td.list-column=platform.updated_at
           %td.list-column.list-row-action
             .list-row-action-wrapper
               =link_to tag_icon(:edit), :href => url(:platforms, :edit, :id => platform.id), :rel => :tooltip, :title => "#{pat(:edit)} platform", :class => 'list-row-action-wrapper-link'

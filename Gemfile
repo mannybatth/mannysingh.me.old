@@ -6,6 +6,8 @@ ruby "2.1.3"
 
 # Server requirements
 # gem 'thin' # or mongrel
+gem 'unicorn'
+
 # gem 'trinidad', :platform => 'jruby'
 
 # Optional JSON codec (faster performance)
@@ -13,23 +15,44 @@ ruby "2.1.3"
 
 # Project requirements
 gem 'rake'
+gem 'sinatra-flash', :require => 'sinatra/flash'
 
 # Component requirements
 gem 'bcrypt'
+# gem 'bcrypt-ruby', :require => "bcrypt"
+gem 'therubyracer'
 gem 'sass'
+gem 'erubis', '~> 2.7.0'
+gem 'dm-validations'
+gem 'dm-timestamps'
+gem 'dm-migrations'
+gem 'dm-constraints'
+gem 'dm-aggregates'
+gem 'dm-types'
+gem 'dm-core'
+
 gem 'haml'
-gem 'bson_ext', :require => 'mongo'
-gem 'mongo_mapper'
+gem 'foreman'
+
+group :development do
+  gem 'dm-sqlite-adapter'
+end
+
+group :production do
+ gem 'pg'
+ gem 'do_postgres'
+ gem 'dm-postgres-adapter'
+end
 
 # Test requirements
-gem 'shoulda', :group => 'test'
+gem 'rspec', :group => 'test'
 gem 'rack-test', :require => 'rack/test', :group => 'test'
 
 # Padrino Stable Gem
 gem 'padrino', '0.12.4'
 
 # Or Padrino Edge
-#gem 'padrino', :github => 'padrino/padrino-framework'
+# gem 'padrino', :github => 'padrino/padrino-framework'
 
 # Or Individual Gems
 # %w(core support gen helpers cache mailer admin).each do |g|

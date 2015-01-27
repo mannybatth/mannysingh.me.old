@@ -26,6 +26,7 @@
                       =hidden_field_tag :language_ids, :'data-delete-many-ids' => true
                       =submit_tag pat(:delete), :class =>'list-menu-popover-delete-selected-btn btn btn-danger btn-small'
                       .btn.btn-default.btn-small.cancel=pat(:cancel)
+        %th.header= mat(:language, :id)
         %th.header= mat(:language, :name)
         %th.header= mat(:language, :link)
         %th.header= mat(:language, :created_at)
@@ -37,10 +38,11 @@
         %tr.list-row
           %td.list-column.list-selectable
             =check_box_tag 'language_ids[]', :value => language.id, :class => 'list-selectable-checkbox'
+          %td.list-column=language.id
           %td.list-column=language.name
           %td.list-column=language.link
-          %td.list-column=time_ago_in_words language.created_at
-          %td.list-column=time_ago_in_words language.updated_at
+          %td.list-column=language.created_at
+          %td.list-column=language.updated_at
           %td.list-column.list-row-action
             .list-row-action-wrapper
               =link_to tag_icon(:edit), :href => url(:languages, :edit, :id => language.id), :rel => :tooltip, :title => "#{pat(:edit)} language", :class => 'list-row-action-wrapper-link'

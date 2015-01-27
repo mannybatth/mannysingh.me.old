@@ -1,17 +1,19 @@
-if ENV['MONGOLAB_URI']
+##
+# A MySQL connection:
+# DataMapper.setup(:default, 'mysql://user:password@localhost/the_database_name')
+#
+# # A Postgres connection:
+# DataMapper.setup(:default, 'postgres://user:password@localhost/the_database_name')
+#
+# # A Sqlite3 connection
+# DataMapper.setup(:default, "sqlite3://" + Padrino.root('db', "development.db"))
+#
 
-    uri = URI.parse(ENV['MONGOLAB_URI'])
-    MongoMapper.connection = Mongo::Connection.from_uri(ENV['MONGOLAB_URI'])
-    MongoMapper.database = uri.path.gsub(/^\//, '')
-    MongoMapper.database.authenticate(uri.user, uri.password)
+DataMapper.logger = logger
+DataMapper::Property::String.length(255)
 
-else
-
-    MongoMapper.connection = Mongo::Connection.new('localhost', nil, :logger => logger)
-    case Padrino.env
-        when :development then MongoMapper.database = 'mannysingh_me_development'
-        when :production  then MongoMapper.database = 'mannysingh_me_production'
-        when :test        then MongoMapper.database = 'mannysingh_me_test'
-    end
-
+case Padrino.env
+  when :development then DataMapper.setup(:default, "sqlite3://" + Padrino.root('db', "development.db"))
+  when :production  then DataMapper.setup(:default, ENV["DATABASE_URL"])
+  when :test        then DataMapper.setup(:default, "sqlite3://" + Padrino.root('db', "test.db"))
 end

@@ -26,7 +26,7 @@ MannySinghMe::Admin.controllers :platforms do
 
   get :edit, :with => :id do
     @title = pat(:edit_title, :model => "platform #{params[:id]}")
-    @platform = Platform.find(params[:id])
+    @platform = Platform.get(params[:id])
     if @platform
       render 'platforms/edit'
     else
@@ -37,9 +37,9 @@ MannySinghMe::Admin.controllers :platforms do
 
   put :update, :with => :id do
     @title = pat(:update_title, :model => "platform #{params[:id]}")
-    @platform = Platform.find(params[:id])
+    @platform = Platform.get(params[:id])
     if @platform
-      if @platform.update_attributes(params[:platform])
+      if @platform.update(params[:platform])
         flash[:success] = pat(:update_success, :model => 'Platform', :id =>  "#{params[:id]}")
         params[:save_and_continue] ?
           redirect(url(:platforms, :index)) :
@@ -56,7 +56,7 @@ MannySinghMe::Admin.controllers :platforms do
 
   delete :destroy, :with => :id do
     @title = "Platforms"
-    platform = Platform.find(params[:id])
+    platform = Platform.get(params[:id])
     if platform
       if platform.destroy
         flash[:success] = pat(:delete_success, :model => 'Platform', :id => "#{params[:id]}")
@@ -77,9 +77,9 @@ MannySinghMe::Admin.controllers :platforms do
       redirect(url(:platforms, :index))
     end
     ids = params[:platform_ids].split(',').map(&:strip)
-    platforms = Platform.find(ids)
+    platforms = Platform.all(:id => ids)
     
-    if platforms.each(&:destroy)
+    if platforms.destroy
     
       flash[:success] = pat(:destroy_many_success, :model => 'Platforms', :ids => "#{ids.to_sentence}")
     end

@@ -26,6 +26,7 @@
                       =hidden_field_tag :library_ids, :'data-delete-many-ids' => true
                       =submit_tag pat(:delete), :class =>'list-menu-popover-delete-selected-btn btn btn-danger btn-small'
                       .btn.btn-default.btn-small.cancel=pat(:cancel)
+        %th.header= mat(:library, :id)
         %th.header= mat(:library, :name)
         %th.header= mat(:library, :link)
         %th.header= mat(:library, :created_at)
@@ -37,10 +38,11 @@
         %tr.list-row
           %td.list-column.list-selectable
             =check_box_tag 'library_ids[]', :value => library.id, :class => 'list-selectable-checkbox'
+          %td.list-column=library.id
           %td.list-column=library.name
           %td.list-column=library.link
-          %td.list-column=time_ago_in_words library.created_at
-          %td.list-column=time_ago_in_words library.updated_at
+          %td.list-column=library.created_at
+          %td.list-column=library.updated_at
           %td.list-column.list-row-action
             .list-row-action-wrapper
               =link_to tag_icon(:edit), :href => url(:libraries, :edit, :id => library.id), :rel => :tooltip, :title => "#{pat(:edit)} library", :class => 'list-row-action-wrapper-link'

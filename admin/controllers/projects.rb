@@ -8,15 +8,14 @@ MannySinghMe::Admin.controllers :projects do
   get :new do
     @title = pat(:new_title, :model => 'project')
     @project = Project.new
-    @languages = Language.all
-    @libraries = Library.all
-    @platforms = Platform.all
+    @languages_list = Language.all
+    @libraries_list = Library.all
+    @platforms_list = Platform.all
     render 'projects/new'
   end
 
   post :create do
     @project = Project.new(params[:project])
-    @project.screenshots = @project.screenshots.split(/[\s,]+/)
     if @project.save
       @title = pat(:create_title, :model => "project #{@project.id}")
       flash[:success] = pat(:create_success, :model => 'Project')
@@ -30,10 +29,10 @@ MannySinghMe::Admin.controllers :projects do
 
   get :edit, :with => :id do
     @title = pat(:edit_title, :model => "project #{params[:id]}")
-    @project = Project.find(params[:id])
-    @languages = Language.all
-    @libraries = Library.all
-    @platforms = Platform.all
+    @project = Project.get(params[:id])
+    @languages_list = Language.all
+    @libraries_list = Library.all
+    @platforms_list = Platform.all
     if @project
       render 'projects/edit'
     else
@@ -44,10 +43,9 @@ MannySinghMe::Admin.controllers :projects do
 
   put :update, :with => :id do
     @title = pat(:update_title, :model => "project #{params[:id]}")
-    @project = Project.find(params[:id])
+    @project = Project.get(params[:id])
     if @project
-      params[:project]['screenshots'] = params[:project]['screenshots'].to_s.split(/[\s,]+/)
-      if @project.update_attributes(params[:project])
+      if @project.update(params[:project])
         flash[:success] = pat(:update_success, :model => 'Project', :id =>  "#{params[:id]}")
         params[:save_and_continue] ?
           redirect(url(:projects, :index)) :
@@ -64,7 +62,7 @@ MannySinghMe::Admin.controllers :projects do
 
   delete :destroy, :with => :id do
     @title = "Projects"
-    project = Project.find(params[:id])
+    project = Project.get(params[:id])
     if project
       if project.destroy
         flash[:success] = pat(:delete_success, :model => 'Project', :id => "#{params[:id]}")
@@ -85,10 +83,10 @@ MannySinghMe::Admin.controllers :projects do
       redirect(url(:projects, :index))
     end
     ids = params[:project_ids].split(',').map(&:strip)
-    projects = Project.find(ids)
-
-    if projects.each(&:destroy)
-
+    projects = Project.all(:id => ids)
+    
+    if projects.destroy
+    
       flash[:success] = pat(:destroy_many_success, :model => 'Projects', :ids => "#{ids.to_sentence}")
     end
     redirect url(:projects, :index)

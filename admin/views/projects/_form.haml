@@ -1,46 +1,42 @@
-- error = @project.errors.include?(:title)
+- error = @project.errors.key?(:title) && @project.errors[:title].count > 0
 %fieldset.control-group{:class => error ? 'has-error' : ''}
   =f.label :title, :class => 'control-label'
   .controls
     =f.text_field :title, :class => 'form-control input-large input-with-feedback', :autofocus => true
-    %span.help-inline=error ? f.error_message_on(:title, :class => 'text-error') : ''
-
-- error = @project.errors.include?(:body)
+    %span.help-inline=error ? f.error_message_on(:title, :class => 'text-error') : pat(:example)
+- error = @project.errors.key?(:body) && @project.errors[:body].count > 0
 %fieldset.control-group{:class => error ? 'has-error' : ''}
   =f.label :body, :class => 'control-label'
   .controls
-    =f.text_area :body, :class => 'form-control input-large input-with-feedback', :rows => 4
-    %span.help-inline=error ? f.error_message_on(:body, :class => 'text-error') : ''
-
-- error = @project.errors.include?(:screenshots)
+    ~f.text_area :body, :class => 'form-control input-large input-with-feedback'
+    %span.help-inline=error ? f.error_message_on(:body, :class => 'text-error') : pat(:example)
+- error = @project.errors.key?(:screenshots) && @project.errors[:screenshots].count > 0
 %fieldset.control-group{:class => error ? 'has-error' : ''}
   =f.label :screenshots, :class => 'control-label'
   .controls
-    =f.text_field :screenshots, :class => 'form-control input-large input-with-feedback tags_input', :value => @project.screenshots.join(",")
-    %span.help-inline=error ? f.error_message_on(:screenshots, :class => 'text-error') : ''
+    =f.text_field :screenshots, :class => 'form-control input-large input-with-feedback'
+    %span.help-inline=error ? f.error_message_on(:screenshots, :class => 'text-error') : pat(:example)
 
-- error = @project.errors.include?(:language_ids)
+- error = @project.errors.include?(:languages)
 %fieldset.control-group{:class => error ? 'has-error' : ''}
   =f.label :languages, :class => 'control-label'
   .controls
-    =f.select :language_ids, :class => 'form-control input-large input-with-feedback', :collection => @languages, fields: [:name, :id], :multiple => true
-    %span.help-inline=error ? f.error_message_on(:language_ids, :class => 'text-error') : ''
+    =f.select :languages, :class => 'form-control input-large input-with-feedback', :collection => @languages_list, fields: [:name, :id], :multiple => true
+    %span.help-inline=error ? f.error_message_on(:languages, :class => 'text-error') : ''
 
-- error = @project.errors.include?(:library_ids)
+- error = @project.errors.include?(:libraries)
 %fieldset.control-group{:class => error ? 'has-error' : ''}
   =f.label :libraries, :class => 'control-label'
   .controls
-    =f.select :library_ids, :class => 'form-control input-large input-with-feedback', :collection => @libraries, fields: [:name, :id], :multiple => true
-    %span.help-inline=error ? f.error_message_on(:library_ids, :class => 'text-error') : ''
+    =f.select :libraries, :class => 'form-control input-large input-with-feedback', :collection => @libraries_list, fields: [:name, :id], :multiple => true
+    %span.help-inline=error ? f.error_message_on(:libraries, :class => 'text-error') : ''
 
-- error = @project.errors.include?(:platform_ids)
+- error = @project.errors.include?(:platforms)
 %fieldset.control-group{:class => error ? 'has-error' : ''}
   =f.label :platforms, :class => 'control-label'
   .controls
-    =f.select :platform_ids, :class => 'form-control input-large input-with-feedback', :collection => @platforms, fields: [:name, :id], :multiple => true
-    %span.help-inline=error ? f.error_message_on(:platform_ids, :class => 'text-error') : ''
-
-%br
+    =f.select :platforms, :class => 'form-control input-large input-with-feedback', :collection => @platforms_list, fields: [:name, :id], :multiple => true
+    %span.help-inline=error ? f.error_message_on(:platforms, :class => 'text-error') : ''
 
 .form-actions
   =f.submit pat(:save), :class => 'btn btn-primary'

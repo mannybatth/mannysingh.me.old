@@ -1,7 +1,12 @@
 MannySinghMe::App.controllers :base do
 
   get :index, :map => "/" do
-    @projects = Project.all(:order => 'created_at desc')
+
+    puts Account.all
+    puts Library.all
+
+
+    @projects = Project.all(:order => 'created_at')
     render "base/index"
   end
   

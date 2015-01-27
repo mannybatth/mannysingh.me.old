@@ -1,10 +1,10 @@
-- error = @platform.errors.include?(:name)
+- error = @platform.errors.key?(:name) && @platform.errors[:name].count > 0
 %fieldset.control-group{:class => error ? 'has-error' : ''}
   =f.label :name, :class => 'control-label'
   .controls
     =f.text_field :name, :class => 'form-control input-large input-with-feedback', :autofocus => true
     %span.help-inline=error ? f.error_message_on(:name, :class => 'text-error') : pat(:example)
-- error = @platform.errors.include?(:link)
+- error = @platform.errors.key?(:link) && @platform.errors[:link].count > 0
 %fieldset.control-group{:class => error ? 'has-error' : ''}
   =f.label :link, :class => 'control-label'
   .controls

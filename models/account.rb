@@ -1,34 +1,43 @@
 class Account
-  include MongoMapper::Document
+  include DataMapper::Resource
+  include DataMapper::Validate
   attr_accessor :password, :password_confirmation
 
-  # Keys
-  key :name,             String
-  key :surname,          String
-  key :email,            String
-  key :crypted_password, String
-  key :role,             String
+  # Properties
+  property :id,               Serial
+  property :name,             String
+  property :surname,          String
+  property :email,            String
+  property :crypted_password, String, :length => 70
+  property :role,             String
 
   # Validations
-  validates_presence_of     :email, :role
-  validates_presence_of     :password,                   :if => :password_required
-  validates_presence_of     :password_confirmation,      :if => :password_required
-  validates_length_of       :password, :within => 4..40, :if => :password_required
-  validates_confirmation_of :password,                   :if => :password_required
-  validates_length_of       :email,    :within => 3..100
-  validates_uniqueness_of   :email,    :case_sensitive => false
-  validates_format_of       :email,    :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
-  validates_format_of       :role,     :with => /[A-Za-z]/
+  validates_presence_of      :email, :role
+  validates_presence_of      :password,                          :if => :password_required
+  validates_presence_of      :password_confirmation,             :if => :password_required
+  validates_length_of        :password, :min => 4, :max => 40,   :if => :password_required
+  validates_confirmation_of  :password,                          :if => :password_required
+  validates_length_of        :email,    :min => 3, :max => 100
+  validates_uniqueness_of    :email,    :case_sensitive => false
+  validates_format_of        :email,    :with => :email_address
+  validates_format_of        :role,     :with => /[A-Za-z]/
 
   # Callbacks
-  before_save :encrypt_password, :if => :password_required
+  before :save, :encrypt_password
 
   ##
   # This method is for authentication purpose.
   #
   def self.authenticate(email, password)
-    account = first(:email => /#{Regexp.escape(email)}/i) if email.present?
+    account = first(:conditions => ["lower(email) = lower(?)", email]) if email.present?
     account && account.has_password?(password) ? account : nil
+  end
+
+  ##
+  # This method is used by AuthenticationHelper
+  #
+  def self.find_by_id(id)
+    get(id) rescue nil
   end
 
   def has_password?(password)
@@ -37,11 +46,11 @@ class Account
 
   private
 
-  def encrypt_password
-    self.crypted_password = ::BCrypt::Password.create(password)
-  end
-
   def password_required
     crypted_password.blank? || password.present?
+  end
+
+  def encrypt_password
+    self.crypted_password = ::BCrypt::Password.create(password) if password.present?
   end
 end

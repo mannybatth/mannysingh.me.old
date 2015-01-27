@@ -26,12 +26,10 @@
                       =hidden_field_tag :project_ids, :'data-delete-many-ids' => true
                       =submit_tag pat(:delete), :class =>'list-menu-popover-delete-selected-btn btn btn-danger btn-small'
                       .btn.btn-default.btn-small.cancel=pat(:cancel)
+        %th.header= mat(:project, :id)
         %th.header= mat(:project, :title)
         %th.header= mat(:project, :body)
         %th.header= mat(:project, :screenshots)
-        /%th.header= mat(:project, :language_ids)
-        /%th.header= mat(:project, :library_ids)
-        /%th.header= mat(:project, :platform_ids)
         %th.header= mat(:project, :created_at)
         %th.header= mat(:project, :updated_at)
         %th.header.list-row-action-header
@@ -41,14 +39,12 @@
         %tr.list-row
           %td.list-column.list-selectable
             =check_box_tag 'project_ids[]', :value => project.id, :class => 'list-selectable-checkbox'
+          %td.list-column=project.id
           %td.list-column=project.title
           %td.list-column=project.body
           %td.list-column=project.screenshots
-          /%td.list-column=project.language_ids
-          /%td.list-column=project.library_ids
-          /%td.list-column=project.platform_ids
-          %td.list-column=time_ago_in_words project.created_at
-          %td.list-column=time_ago_in_words project.updated_at
+          %td.list-column=project.created_at
+          %td.list-column=project.updated_at
           %td.list-column.list-row-action
             .list-row-action-wrapper
               =link_to tag_icon(:edit), :href => url(:projects, :edit, :id => project.id), :rel => :tooltip, :title => "#{pat(:edit)} project", :class => 'list-row-action-wrapper-link'

@@ -26,7 +26,7 @@ MannySinghMe::Admin.controllers :libraries do
 
   get :edit, :with => :id do
     @title = pat(:edit_title, :model => "library #{params[:id]}")
-    @library = Library.find(params[:id])
+    @library = Library.get(params[:id])
     if @library
       render 'libraries/edit'
     else
@@ -37,9 +37,9 @@ MannySinghMe::Admin.controllers :libraries do
 
   put :update, :with => :id do
     @title = pat(:update_title, :model => "library #{params[:id]}")
-    @library = Library.find(params[:id])
+    @library = Library.get(params[:id])
     if @library
-      if @library.update_attributes(params[:library])
+      if @library.update(params[:library])
         flash[:success] = pat(:update_success, :model => 'Library', :id =>  "#{params[:id]}")
         params[:save_and_continue] ?
           redirect(url(:libraries, :index)) :
@@ -56,7 +56,7 @@ MannySinghMe::Admin.controllers :libraries do
 
   delete :destroy, :with => :id do
     @title = "Libraries"
-    library = Library.find(params[:id])
+    library = Library.get(params[:id])
     if library
       if library.destroy
         flash[:success] = pat(:delete_success, :model => 'Library', :id => "#{params[:id]}")
@@ -77,9 +77,9 @@ MannySinghMe::Admin.controllers :libraries do
       redirect(url(:libraries, :index))
     end
     ids = params[:library_ids].split(',').map(&:strip)
-    libraries = Library.find(ids)
+    libraries = Library.all(:id => ids)
     
-    if libraries.each(&:destroy)
+    if libraries.destroy
     
       flash[:success] = pat(:destroy_many_success, :model => 'Libraries', :ids => "#{ids.to_sentence}")
     end

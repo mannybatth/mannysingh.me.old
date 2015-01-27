@@ -20,7 +20,7 @@ MannySinghMe::App.controllers :projects do
     # end
 
     # get :index do
-    #     @projects = Project.all(:order => 'created_at desc')
+    #     @projects = Project.all(:order => 'created_at')
     #     render 'projects/index'
     # end
 

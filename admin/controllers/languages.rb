@@ -26,7 +26,7 @@ MannySinghMe::Admin.controllers :languages do
 
   get :edit, :with => :id do
     @title = pat(:edit_title, :model => "language #{params[:id]}")
-    @language = Language.find(params[:id])
+    @language = Language.get(params[:id])
     if @language
       render 'languages/edit'
     else
@@ -37,9 +37,9 @@ MannySinghMe::Admin.controllers :languages do
 
   put :update, :with => :id do
     @title = pat(:update_title, :model => "language #{params[:id]}")
-    @language = Language.find(params[:id])
+    @language = Language.get(params[:id])
     if @language
-      if @language.update_attributes(params[:language])
+      if @language.update(params[:language])
         flash[:success] = pat(:update_success, :model => 'Language', :id =>  "#{params[:id]}")
         params[:save_and_continue] ?
           redirect(url(:languages, :index)) :
@@ -56,7 +56,7 @@ MannySinghMe::Admin.controllers :languages do
 
   delete :destroy, :with => :id do
     @title = "Languages"
-    language = Language.find(params[:id])
+    language = Language.get(params[:id])
     if language
       if language.destroy
         flash[:success] = pat(:delete_success, :model => 'Language', :id => "#{params[:id]}")
@@ -77,9 +77,9 @@ MannySinghMe::Admin.controllers :languages do
       redirect(url(:languages, :index))
     end
     ids = params[:language_ids].split(',').map(&:strip)
-    languages = Language.find(ids)
+    languages = Language.all(:id => ids)
     
-    if languages.each(&:destroy)
+    if languages.destroy
     
       flash[:success] = pat(:destroy_many_success, :model => 'Languages', :ids => "#{ids.to_sentence}")
     end

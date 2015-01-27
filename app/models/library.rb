@@ -1,8 +1,12 @@
 class Library
-  include MongoMapper::Document
+  include DataMapper::Resource
 
-  # key <name>, <type>
-  key :name, String
-  key :link, String
-  timestamps!
+  # property <name>, <type>
+  property :id, Serial
+  property :name, String
+  property :link, String
+  property :created_at, DateTime
+  property :updated_at, DateTime
+
+  belongs_to :project
 end
