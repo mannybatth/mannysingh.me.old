@@ -49,8 +49,16 @@
     =javascript_include_tag 'jquery-1.11.0.min', (Padrino.env == :production ? 'bootstrap/bootstrap.min' : %w[bootstrap/affix bootstrap/alert bootstrap/button bootstrap/carousel bootstrap/collapse bootstrap/dropdown  bootstrap/tooltip bootstrap/transition  bootstrap/modal bootstrap/popover bootstrap/scrollspy bootstrap/tab]), :application
     =javascript_include_tag 'bootstrap-select.min', 'jquery.cleditor.min', 'jquery-ui.min', 'jquery.tagsinput'
     :javascript
-        $(document).ready( function() {
+        $(document).ready(function() {
+
           $('select').selectpicker();
-          $('textarea').cleditor();
+          $('textarea').cleditor({
+            updateTextArea: function(html) {
+              var e = $('<div>').append(html);
+              e.find('a[href]').attr('target', '_blank');
+              return e.html();
+            }
+          });
           $('.tags_input').tagsInput({width:'auto'});
-        } );
+
+        });
