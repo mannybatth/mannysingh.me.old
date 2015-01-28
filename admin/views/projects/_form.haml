@@ -18,6 +18,13 @@
     =f.text_field :screenshots, :class => 'form-control input-large input-with-feedback tags_input'
     %span.help-inline=error ? f.error_message_on(:screenshots, :class => 'text-error') : pat(:example)
 
+- error = @project.errors.key?(:list_order) && @project.errors[:list_order].count > 0
+%fieldset.control-group{:class => error ? 'has-error' : ''}
+  =f.label :list_order, :class => 'control-label'
+  .controls
+    =f.text_field :list_order, :class => 'form-control input-large input-with-feedback'
+    %span.help-inline=error ? f.error_message_on(:list_order, :class => 'text-error') : pat(:example)
+
 - error = @project.errors.include?(:selected_languages)
 %fieldset.control-group{:class => error ? 'has-error' : ''}
   =f.label :selected_languages, :class => 'control-label', :value => @selected_languages

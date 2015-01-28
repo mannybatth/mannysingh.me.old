@@ -30,6 +30,7 @@
         %th.header= mat(:project, :title)
         %th.header= mat(:project, :body)
         %th.header= mat(:project, :screenshots)
+        %th.header= mat(:project, :list_order)
         %th.header= mat(:project, :created_at)
         %th.header= mat(:project, :updated_at)
         %th.header.list-row-action-header
@@ -43,6 +44,7 @@
           %td.list-column=project.title
           %td.list-column=project.body
           %td.list-column=project.screenshots
+          %td.list-column=project.list_order
           %td.list-column=project.created_at
           %td.list-column=project.updated_at
           %td.list-column.list-row-action
