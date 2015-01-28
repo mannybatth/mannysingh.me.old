@@ -29,7 +29,7 @@
 %fieldset.control-group{:class => error ? 'has-error' : ''}
   =f.label :selected_languages, :class => 'control-label', :value => @selected_languages
   .controls
-    =f.select :selected_languages, :class => 'form-control input-large input-with-feedback selectpicker', :collection => @languages_list, fields: [:name, :id], :multiple => true, :value => @selected_languages, :data-size="auto"
+    =f.select :selected_languages, :class => 'form-control input-large input-with-feedback selectpicker', :collection => @languages_list, fields: [:name, :id], :multiple => true, :value => @selected_languages
     %span.help-inline=error ? f.error_message_on(:selected_languages, :class => 'text-error') : ''
 
 - error = @project.errors.include?(:selected_libraries)
