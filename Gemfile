@@ -34,15 +34,9 @@ gem 'dm-core'
 gem 'haml'
 gem 'foreman'
 
-group :development do
-  gem 'dm-sqlite-adapter'
-end
-
-group :production do
- gem 'pg'
- gem 'do_postgres'
- gem 'dm-postgres-adapter'
-end
+gem 'pg'
+gem 'do_postgres'
+gem 'dm-postgres-adapter'
 
 # Test requirements
 gem 'rspec'
