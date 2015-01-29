@@ -1,9 +1,6 @@
 .grid {
 	max-width: 1300px;
-	margin: 0 auto;
 	list-style: none;
-	text-align: center;
-	padding:0;
 }
 
 .grid li {
