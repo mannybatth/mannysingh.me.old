@@ -22,15 +22,15 @@
         %a#menu-close.btn.btn-light.btn-lg.pull-right.toggle{:href => "#"}
           %i.fa.fa-times
         %li.sidebar-brand
-          %a{:href => "#top"} Manpreet Singh
+          %a{:href => request.base_url+"/#top"} Manpreet Singh
         %li
-          %a{:href => "#top"} Home
+          %a{:href => request.base_url+"/#top"} Home
         %li
-          %a{:href => "#about"} About
+          %a{:href => request.base_url+"/#about"} About
         %li
-          %a{:href => "#projects"} Projects
+          %a{:href => request.base_url+"/#projects"} Projects
         %li
-          %a{:href => "#contact"} Contact
+          %a{:href => request.base_url+"/#contact"} Contact
 
     =yield
     
