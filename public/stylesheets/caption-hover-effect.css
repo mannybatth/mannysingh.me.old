@@ -45,6 +45,7 @@
 	margin: 0;
 	padding: 5px 10px;
 	color: #fff;
+	font-size:22px;
 }
 
 .grid figcaption span:before {
@@ -53,6 +54,12 @@
 
 .grid figcaption a {
 	text-decoration: none;
+	display:block;
+}
+
+.grid figcaption a.project_item_title {
+	height:100%;
+	width:100%;
 }
 
 .grid figcaption a.link_to_btn {

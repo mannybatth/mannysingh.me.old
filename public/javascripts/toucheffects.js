@@ -68,10 +68,19 @@
 		}
 
 		[].slice.call( document.querySelectorAll( 'ul.grid > li > figure' ) ).forEach( function( el, i ) {
-			el.querySelector( 'figcaption > a' ).addEventListener( 'touchstart', function(e) {
+			el.querySelector( 'figcaption a' ).addEventListener( 'touchend', function(e) {
 				e.stopPropagation();
+
+				if (e.href) {
+					e.preventDefault();
+					if (e.target == "_blank") { window.open(e.href, e.target); }
+        			else { document.location = e.href; }
+        		}
+
 			}, false );
-			el.addEventListener( 'touchstart', function(e) {
+
+			el.addEventListener( 'touchend', function(e) {
+				e.stopPropagation();
 				classie.toggle( this, 'cs-hover' );
 			}, false );
 		} );

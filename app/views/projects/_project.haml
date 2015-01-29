@@ -1,11 +1,9 @@
-.col-md-6
-    %li.portfolio-item
-        %figure
-            %div.thumbnail_wrapper
-                - if !project.screenshots.nil? && !project.screenshots.empty?
-                    %img.img-responsive{:alt => project.title, :src => "/images/screenshots/"+project.screenshots.split(',').first}/
-            %figcaption
-                %a{:href => "/projects/show/"+project.id.to_s}
-                    %h3= project.title
-                / %span caption here
-                =link_to "Project details", url_for(:projects, :show, :id => project.id), :class => "link_to_btn"
+%li.portfolio-item.col-md-6
+    %figure
+        %div.thumbnail_wrapper
+            - if !project.screenshots.nil? && !project.screenshots.empty?
+                %img.img-responsive{:alt => project.title, :src => "/images/screenshots/"+project.screenshots.split(',').first}/
+        %figcaption
+            %a{:href => "/projects/show/"+project.id.to_s, :class => "project_item_title"}
+                %h3= project.title
+            =link_to "Project details", url_for(:projects, :show, :id => project.id), :class => "link_to_btn"

@@ -9,6 +9,12 @@
 	font-style: normal;
 }
 
+@media all and (max-device-width: 480px){
+    .grid figcaption h3 {
+        font-size: 14px;
+    }
+}
+
 i.icon-logo:before {
     font-family: 'manny';
 	speak: none;
