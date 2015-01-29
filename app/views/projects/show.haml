@@ -2,13 +2,43 @@
 
 %section#projects.portfolio
     .container
+        .row.project
+            .col-lg-12
+                .title= @project.title
+                .body= simple_format(@project.body.to_s.html_safe)
         .row
-            .col-lg-10.col-lg-offset-1
-                .project.portfolio-item
-                    .title= @project.title
-                    .body= simple_format(@project.body.to_s.html_safe)
-                    %ul.grid
-                        - @project.screenshots.split(',').each do |s|
-                            %li.portfolio-item
-                                %img.img-portfolio.img-responsive{:alt => @project.title, :src => "/images/screenshots/"+s}/
+            .col-lg-2
+                .row
+                    %br/
+                    .col-xs-4.col-lg-12
+                        %b Languages:
+                        %br/
+                        - @project.languages.each do |lang|
+                            %a{:href => lang.link, :target => '_blank'}
+                                =lang.name
+                            %br/
+                        %br/
+
+                    .col-xs-4.col-lg-12
+                        %b Libraries:
+                        %br/
+                        - @project.libraries.each do |lib|
+                            %a{:href => lib.link, :target => '_blank'}
+                                =truncate(lib.name, :length => 17)
+                            %br/
+                        %br/
+
+                    .col-xs-4.col-lg-12
+                        %b Platforms:
+                        %br/
+                        - @project.platforms.each do |plat|
+                            %a{:href => plat.link, :target => '_blank'}
+                                =plat.name
+                            %br/
+
+            .col-lg-10
+                %ul.grid{:style => 'text-align: left;'}
+                    - @project.screenshots.split(',').each do |s|
+                        %li.portfolio-item
+                            %img.img-portfolio.img-responsive{:alt => @project.title, :src => "/images/screenshots/"+s}/
           
